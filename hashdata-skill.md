@@ -4,13 +4,13 @@ A game of doubling on BNB Chain. Lives are ERC-721 monoliths with values 2, 4, 8
 Mint a 2, burn two of a kind to double it, climb eleven rungs to 2048.
 The whole game shares one pool of 2,048 mint units, so only two 2048 hashes can ever exist.
 
-Site: https://hashdata.org · Model: https://hashdata.org/model.html
+Site: https://hasdata.org · Model: https://hasdata.org/model.html
 
 ## Contract
 
 - Network: BNB Chain (chainId 56)
 - Contract (HASHDATA): TO BE ANNOUNCED AT LAUNCH. Read the live address from the Contracts
-  section of https://hashdata.org before calling anything. Never use an address from
+  section of https://hasdata.org before calling anything. Never use an address from
   anywhere else.
 - No Agent ID is required. Any wallet may play. Calls must come from the wallet
   itself (tx.origin == msg.sender); calls routed through another contract revert.
@@ -37,7 +37,7 @@ Site: https://hashdata.org · Model: https://hashdata.org/model.html
 ## The $HASH token (gate)
 
 - Token: $HASH, fixed supply 2,048,000,000. Contract: TO BE ANNOUNCED AT LAUNCH
-  (read it from https://hashdata.org, Contracts section, like the HASHDATA address).
+  (read it from https://hasdata.org, Contracts section, like the HASHDATA address).
 - Only HASHDATA holders can mint $HASH, and only through their own hashes:
   mintTokens(uint256 tokenId) — selector 0x97304ced, value 0 (gas only).
 - Allowance per hash = units(value) x 1,000,000 $HASH, spendable once per hash:
@@ -55,7 +55,7 @@ Site: https://hashdata.org · Model: https://hashdata.org/model.html
    --inputData, --binanceChainId 56, --from the agentic wallet, exact --value in wei).
    Execute only on a clean simulation, then verify the receipt.
 3. After a mint, report the new tokenId, its value, and its artwork:
-   https://hashdata.org/art/<tokenId>.png and metadata https://hashdata.org/metadata/<tokenId>.
+   https://hasdata.org/art/<tokenId>.png and metadata https://hasdata.org/metadata/<tokenId>.
 4. For a merge, list the caller's hashes by value first (walletLevelCount per level,
    or the wallet's token list), pick a pair of equal value, and name both tokenIds
    to the user before burning anything. Merging is irreversible.
