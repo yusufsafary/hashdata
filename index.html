@@ -7,7 +7,7 @@
 <meta name="description" content="A game of doubling written in hashes, on BNB Chain. Mint a 2-bit hash for $0.20, merge two equal hashes to double the bits, and climb eleven rungs to 2048 bits. Only 2,048 units can ever be minted, so only two complete SHA-256 hashes can ever exist.">
 <meta property="og:title" content="HASHDATA">
 <meta property="og:description" content="Mint a 2-bit hash. Merge to 2048 bits. Only two complete hashes can ever exist.">
-<meta property="og:image" content="https://hashdata.org/og.png">
+<meta property="og:image" content="https://hasdata.org/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/style.css?v=1">
@@ -50,7 +50,7 @@
       <p class="price">$0.20 <small>±0.00026 BNB · 1 UNIT</small></p>
       <details>
         <summary>PROMPT FOR YOUR AGENT</summary>
-        <pre id="promptMint">Read https://hashdata.org/hashdata-skill.md and follow it exactly. Mint one HASHDATA base hash (2 bits) for my wallet on BNB Chain: call mint() with exactly the base price stated in the skill file, preview first, then execute. Report my new tokenId and its artwork URL.</pre>
+        <pre id="promptMint">Read https://hasdata.org/hashdata-skill.md and follow it exactly. Mint one HASHDATA base hash (2 bits) for my wallet on BNB Chain: call mint() with exactly the base price stated in the skill file, preview first, then execute. Report my new tokenId and its artwork URL.</pre>
         <button class="btn copy" data-copy="promptMint">Copy prompt</button>
       </details>
     </div>
@@ -61,7 +61,7 @@
       <p class="price">$3 <small>±0.0039 BNB · 16 UNITS</small></p>
       <details>
         <summary>PROMPT FOR YOUR AGENT</summary>
-        <pre id="promptJump">Read https://hashdata.org/hashdata-skill.md and follow it exactly. Mint one HASHDATA boost hash (32 bits) for my wallet on BNB Chain: call mintBoost() with exactly the boost price stated in the skill file, preview first, then execute. Report my new tokenId and its artwork URL.</pre>
+        <pre id="promptJump">Read https://hasdata.org/hashdata-skill.md and follow it exactly. Mint one HASHDATA boost hash (32 bits) for my wallet on BNB Chain: call mintBoost() with exactly the boost price stated in the skill file, preview first, then execute. Report my new tokenId and its artwork URL.</pre>
         <button class="btn goldb copy" data-copy="promptJump">Copy prompt</button>
       </details>
     </div>
@@ -82,7 +82,7 @@
     <p>Merging is free, gas only, and unlimited while you hold a pair. Both hashes must sit in the same wallet. The new hash is written with a red seam on its artwork and a fresh serial. Two 2048-bit hashes cannot merge: a complete SHA-256 is the roof.</p>
     <details>
       <summary>PROMPT FOR YOUR AGENT</summary>
-      <pre id="promptMerge">Read https://hashdata.org/hashdata-skill.md and follow it exactly. In my wallet, find two HASHDATA hashes with equal bits and merge them: call merge(tokenIdA, tokenIdB) with zero value, preview first, then execute. Report the new hash's tokenId, bits, and artwork URL.</pre>
+      <pre id="promptMerge">Read https://hasdata.org/hashdata-skill.md and follow it exactly. In my wallet, find two HASHDATA hashes with equal bits and merge them: call merge(tokenIdA, tokenIdB) with zero value, preview first, then execute. Report the new hash's tokenId, bits, and artwork URL.</pre>
       <button class="btn copy" data-copy="promptMerge">Copy prompt</button>
     </details>
   </div>
@@ -109,7 +109,7 @@
     <p style="color:#3d2f05">Minting never burns the hash, and an allowance can be spent only once per hash. Merge two hashes and the child inherits whatever its parents already minted, so no unit ever pays out twice. Token minted so far: <b id="hudToken">0 / 2,048,000,000</b></p>
     <details>
       <summary>PROMPT FOR YOUR AGENT</summary>
-      <pre id="promptToken">Read https://hashdata.org/hashdata-skill.md and follow it exactly. For each HASHDATA hash in my wallet with unspent allowance, mint its $HASH: call mintTokens(tokenId) on the $HASH token contract with zero value, preview first, then execute. Report how much $HASH each hash minted.</pre>
+      <pre id="promptToken">Read https://hasdata.org/hashdata-skill.md and follow it exactly. For each HASHDATA hash in my wallet with unspent allowance, mint its $HASH: call mintTokens(tokenId) on the $HASH token contract with zero value, preview first, then execute. Report how much $HASH each hash minted.</pre>
       <button class="btn copy" data-copy="promptToken">Copy prompt</button>
     </details>
   </div>
