@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HASHDATA — Every hash starts at 2 bits</title>
+<meta name="description" content="A game of doubling written in hashes, on BNB Chain. Mint a 2-bit hash for $0.20, merge two equal hashes to double the bits, and climb eleven rungs to 2048 bits. Only 2,048 units can ever be minted, so only two complete SHA-256 hashes can ever exist.">
+<meta property="og:title" content="HASHDATA">
+<meta property="og:description" content="Mint a 2-bit hash. Merge to 2048 bits. Only two complete hashes can ever exist.">
+<meta property="og:image" content="https://hashdata.org/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css?v=1">
+</head>
+<body>
+<div class="wrap">
+  <div class="hud">
+    <a class="logo" href="/">HASH<i>·</i>DATA</a>
+    <div class="stat"><b id="hudMinted">0</b><span>HASHES IN PLAY</span></div>
+    <div class="stat"><b id="hudUnits">2,048</b><span>UNITS LEFT OF 2,048</span></div>
+    <div class="stat gold"><b id="hudGold">0 / 2</b><span>FULL HASHES · SHA-256</span></div>
+    <div class="stat"><b>BNB CHAIN</b><span>ANY WALLET · AGENT FIRST</span></div>
+  </div>
+  <nav class="nav"><a href="#mint">MINT</a><a href="#merge">MERGE</a><a href="#ladder">LADDER</a><a href="#check">CHECK A WALLET</a><a href="#token">TOKEN</a><a href="/model.html">MODEL</a><a href="/hashdata-skill.md">AGENT GUIDE</a></nav>
+
+  <section class="hero">
+    <p class="kick">A GAME OF DOUBLING, WRITTEN IN HASHES</p>
+    <h1>EVERY HASH<br>STARTS AT <span class="g">2 BITS.</span></h1>
+    <p class="sub">Mint a hash of <b>2 bits</b>. Burn two of equal size and one comes back with <b>double the bits</b>. Eleven rungs up sits <b>2048 bits</b>, one complete SHA-256, and with only 2,048 units in the whole game, the math lets just two ever exist.</p>
+    <div class="cta"><a class="btn" href="#mint">Write a hash · $0.20</a><a class="btn goldb" href="#mint">Boost to 32 bits · $3</a><a class="btn lineb" href="/model.html">How it works</a></div>
+    <p class="statusline" id="mintStatus">STATUS: <b>MINT OPENS AT LAUNCH</b> · CONTRACT DEPLOYS WITH THE OPENING</p>
+  </section>
+
+  <section class="map">
+    <div class="tag">BIT MAP · LIVE FROM CHAIN</div>
+    <div class="sky" id="sky"></div>
+    <div class="bins" id="bins"></div>
+    <p class="mapcap" id="mapCap">Tap a bar to inspect its rung.</p>
+  </section>
+
+  <div class="ticker" aria-hidden="true"><span class="tk" id="tickerText"></span></div>
+
+  <p class="secnote">01 · MINT</p>
+  <h2 class="sec" id="mint">Two ways in.</h2>
+  <section class="cards">
+    <div class="card">
+      <p class="lvl">WRITE · RUNG B-01</p>
+      <h3>Write a hash</h3>
+      <p>A fresh hash, 2 bits, binary 10. Hold it, trade it, or feed it into a merge. Every climb in the game starts here. At most 64 units per wallet across both doors.</p>
+      <p class="price">$0.20 <small>±0.00026 BNB · 1 UNIT</small></p>
+      <details>
+        <summary>PROMPT FOR YOUR AGENT</summary>
+        <pre id="promptMint">Read https://hashdata.org/hashdata-skill.md and follow it exactly. Mint one HASHDATA base hash (2 bits) for my wallet on BNB Chain: call mint() with exactly the base price stated in the skill file, preview first, then execute. Report my new tokenId and its artwork URL.</pre>
+        <button class="btn copy" data-copy="promptMint">Copy prompt</button>
+      </details>
+    </div>
+    <div class="card dark">
+      <p class="lvl">BOOST · RUNG B-06</p>
+      <h3>Boost to 32 bits</h3>
+      <p>Skip four merges. A 32-bit hash normally eats sixteen 2-bit hashes, worth $3.20 in mints. The boost sells the same rung for $3 flat. Boost hashes carry a BOOST mark on their artwork, forever.</p>
+      <p class="price">$3 <small>±0.0039 BNB · 16 UNITS</small></p>
+      <details>
+        <summary>PROMPT FOR YOUR AGENT</summary>
+        <pre id="promptJump">Read https://hashdata.org/hashdata-skill.md and follow it exactly. Mint one HASHDATA boost hash (32 bits) for my wallet on BNB Chain: call mintBoost() with exactly the boost price stated in the skill file, preview first, then execute. Report my new tokenId and its artwork URL.</pre>
+        <button class="btn goldb copy" data-copy="promptJump">Copy prompt</button>
+      </details>
+    </div>
+  </section>
+  <p class="sub" style="font-size:14px">No Agent ID is required and no wallet connects to this page. Any BNB wallet can call the contract directly; the agent guide is simply the smoothest road. Calls from contracts are rejected, always send from your own wallet.</p>
+
+  <p class="secnote">02 · MERGE</p>
+  <h2 class="sec" id="merge">Two in, one up.</h2>
+  <section class="merge">
+    <div class="slab" style="height:160px"><b>2</b></div>
+    <div class="op">+</div>
+    <div class="slab" style="height:160px"><b>2</b></div>
+    <div class="op" style="color:var(--ink)">→</div>
+    <div class="slab tall" style="height:238px"><b>4</b><div class="seam"></div></div>
+  </section>
+  <p class="cap">TWO EQUAL HASHES BURN · ONE OF DOUBLE THE BITS IS WRITTEN · THE RED SEAM MARKS THE FUSION</p>
+  <div class="card" style="max-width:820px">
+    <p>Merging is free, gas only, and unlimited while you hold a pair. Both hashes must sit in the same wallet. The new hash is written with a red seam on its artwork and a fresh serial. Two 2048-bit hashes cannot merge: a complete SHA-256 is the roof.</p>
+    <details>
+      <summary>PROMPT FOR YOUR AGENT</summary>
+      <pre id="promptMerge">Read https://hashdata.org/hashdata-skill.md and follow it exactly. In my wallet, find two HASHDATA hashes with equal bits and merge them: call merge(tokenIdA, tokenIdB) with zero value, preview first, then execute. Report the new hash's tokenId, bits, and artwork URL.</pre>
+      <button class="btn copy" data-copy="promptMerge">Copy prompt</button>
+    </details>
+  </div>
+
+  <p class="secnote">03 · LADDER</p>
+  <h2 class="sec" id="ladder">The ladder, live.</h2>
+  <section class="board" id="board"></section>
+  <p class="cap" style="text-align:left">COUNTS READ STRAIGHT FROM THE CONTRACT · BURNED HASHES NEVER COME BACK</p>
+
+  <p class="secnote">04 · CHECK</p>
+  <h2 class="sec" id="check">Check a wallet.</h2>
+  <div class="check">
+    <input id="who" type="text" placeholder="0x… wallet address" autocomplete="off" spellcheck="false">
+    <button class="btn" id="whoBtn">Check</button>
+  </div>
+  <p class="checkout" id="whoOut">Counts per rung for any wallet, read from chain. Opens with the contract.</p>
+
+  <p class="secnote">05 · TOKEN</p>
+  <h2 class="sec" id="token">$HASH, behind the gate.</h2>
+  <div class="card" style="border-color:var(--ink);background:var(--gold);max-width:900px">
+    <p class="lvl" style="color:var(--ink)">THE TOKEN · FIXED SUPPLY 2,048,000,000</p>
+    <h3 style="color:var(--ink)">Hashes mint the token</h3>
+    <p style="color:#3d2f05">There is exactly one way to mint $HASH: hold a hash. Every hash carries a minting allowance of <b>1,000,000 $HASH per unit</b> it represents. A 2-bit hash mints 1,000,000. A 32-bit hash mints 16,000,000. A complete 2048-bit hash mints 1,024,000,000, half the supply in a single key.</p>
+    <p style="color:#3d2f05">Minting never burns the hash, and an allowance can be spent only once per hash. Merge two hashes and the child inherits whatever its parents already minted, so no unit ever pays out twice. Token minted so far: <b id="hudToken">0 / 2,048,000,000</b></p>
+    <details>
+      <summary>PROMPT FOR YOUR AGENT</summary>
+      <pre id="promptToken">Read https://hashdata.org/hashdata-skill.md and follow it exactly. For each HASHDATA hash in my wallet with unspent allowance, mint its $HASH: call mintTokens(tokenId) on the $HASH token contract with zero value, preview first, then execute. Report how much $HASH each hash minted.</pre>
+      <button class="btn copy" data-copy="promptToken">Copy prompt</button>
+    </details>
+  </div>
+
+  <p class="secnote">06 · RECORD</p>
+  <h2 class="sec">Contracts.</h2>
+  <section class="contracts">
+    <div class="ccard">
+      <h4>HASHDATA (NFT)</h4>
+      <p>One ERC-721 contract holds the whole game: minting, the boost, merging, and the unit cap of 2,048. Mint proceeds collect in the contract for the owner. A second contract issues the $HASH token, mintable by hash holders only (section 05). No presale.</p>
+      <p class="addr" id="contractAddr">Contract address: published here at launch, before mint opens.</p>
+    </div>
+    <div class="ccard">
+      <h4>Trade</h4>
+      <p>Hashes are standard ERC-721, so they trade anywhere ERC-721 trades. The collection page on Element appears once the first hashes are minted.</p>
+      <p class="addr">element.market/collections/hashdata · opens after first mints</p>
+    </div>
+  </section>
+
+  <div class="foot"><span><b>HASHDATA</b> · HASHDATA.ORG</span><span>MINT AND MERGE RUN THROUGH YOUR AGENT · NO CONNECT WALLET</span><span>EVERY HASH STARTS AT 2 BITS</span></div>
+</div>
+<script src="/app.js?v=2"></script>
+</body>
+</html>
