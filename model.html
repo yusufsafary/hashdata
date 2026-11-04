@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HASHDATA — Model</title>
+<meta name="description" content="Rules, math, money, and access for HASHDATA: the doubling game written in hashes on BNB Chain, with a hard cap of 2,048 units and only two possible complete 2048-bit hashes.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css?v=1">
+</head>
+<body>
+<div class="wrap">
+  <div class="hud">
+    <a class="logo" href="/">HASH<i>·</i>DATA</a>
+    <div class="stat"><b>2,048</b><span>UNITS · HARD CAP</span></div>
+    <div class="stat"><b>11</b><span>RUNGS · 2 TO 2048 BITS</span></div>
+    <div class="stat gold"><b>2</b><span>FULL HASHES · MAX EVER</span></div>
+    <div class="stat"><b>BNB CHAIN</b><span>ANY WALLET · AGENT FIRST</span></div>
+  </div>
+  <nav class="nav"><a href="/">HOME</a><a href="/#mint">MINT</a><a href="/#merge">MERGE</a><a href="/#ladder">LADDER</a><a href="/hashdata-skill.md">AGENT GUIDE</a></nav>
+
+  <section class="hero">
+    <p class="kick">MODEL · RULES, MATH, MONEY</p>
+    <h1>ONE GAME.<br>NO SHORTCUTS<br>PAST THE MATH.</h1>
+  </section>
+
+  <div class="prose">
+    <p class="secnote">RULES</p>
+    <h2 class="sec" style="margin-top:10px">How a hash grows</h2>
+    <p>A hash is an ERC-721 block of data with a size in bits: 2, 4, 8, and so on up to 2048. You enter by minting. A base mint writes you a <b>2-bit</b> hash for $0.20. A boost mint writes a <b>32-bit</b> hash for $3. After that, the only way up is merging: burn two hashes of equal bits that sit in the same wallet, and one hash of double the bits is written in their place.</p>
+    <p>Merging is <b>free</b>, gas only, with no limit while you hold pairs. The two burned hashes are destroyed for good, their serials retired. A merged hash carries a red seam on its artwork. Two 2048-bit hashes cannot merge. A complete SHA-256 is the end of the ladder.</p>
+
+    <p class="secnote">MATH</p>
+    <h2 class="sec" style="margin-top:10px">2,048 units, counted honestly</h2>
+    <p>The whole game is funded by a pool of <b>2,048 units</b>. A base mint spends 1 unit. A boost mint spends 16 units, because 32 bits is worth sixteen 2-bit hashes. Writing one hash of value V eats V/2 units of the pool, one way or another. That is what makes the top of the ladder scarce by arithmetic instead of by promise:</p>
+    <table>
+      <tr><th>BITS</th><th>BINARY</th><th>UNITS EACH</th><th>MAX THAT CAN EVER EXIST</th></tr>
+      <tr><td>2</td><td>10</td><td>1</td><td>2,048</td></tr>
+      <tr><td>4</td><td>100</td><td>2</td><td>1,024</td></tr>
+      <tr><td>8</td><td>1000</td><td>4</td><td>512</td></tr>
+      <tr><td>16</td><td>10000</td><td>8</td><td>256</td></tr>
+      <tr><td>32</td><td>100000</td><td>16</td><td>128</td></tr>
+      <tr><td>64</td><td>1000000</td><td>32</td><td>64</td></tr>
+      <tr><td>128</td><td>10000000</td><td>64</td><td>32</td></tr>
+      <tr><td>256</td><td>100000000</td><td>128</td><td>16</td></tr>
+      <tr><td>512</td><td>1000000000</td><td>256</td><td>8</td></tr>
+      <tr><td>1024</td><td>10000000000</td><td>512</td><td>4</td></tr>
+      <tr class="goldrow"><td>2048</td><td>100000000000</td><td>1,024</td><td>2</td></tr>
+    </table>
+    <p>One wallet may mint at most <b>64 units</b> in total across both doors. Alone, that climbs to 128 bits. Anything higher has to pass through other hands: merges of hashes bought on the market, or trades between players. The two complete hashes will almost certainly be community efforts, whether their owners admit it or not.</p>
+
+    <p class="secnote">MONEY</p>
+    <h2 class="sec" style="margin-top:10px">What it costs, where it goes</h2>
+    <p>Base mint: <b>$0.20</b> (±0.00026 BNB, fixed in the contract at launch). Boost mint: <b>$3</b> (±0.0039 BNB). Merge: free. A full sellout of the pool pays 2,048 × $0.20 = <b>$409.60</b> into the contract, and proceeds are withdrawable by the project owner. Hashes then trade freely as standard ERC-721.</p>
+
+    <p class="secnote">TOKEN</p>
+    <h2 class="sec" style="margin-top:10px">$HASH, minted by hashes</h2>
+    <p>The game has a token, <b>$HASH</b>, with a fixed supply of <b>2,048,000,000</b>. It is never sold. The only minting key is a hash: each hash can mint <b>1,000,000 $HASH per unit</b> it represents, once. A 2-bit hash mints 1,000,000, a 32-bit hash mints 16,000,000, a 1024-bit hash mints 512,000,000, and a complete 2048-bit hash mints 1,024,000,000.</p>
+    <p>Minting the token does not burn or lock the hash. Allowances are tracked per hash, and a merged hash inherits the minted total of its two parents, so climbing the ladder can never mint the same unit twice. Add every possible payout together and it lands exactly on the fixed supply: the gate and the supply are the same math. Minting $HASH is free beyond gas; the hash itself was the price.</p>
+
+    <p class="secnote">ACCESS</p>
+    <h2 class="sec" style="margin-top:10px">Any wallet. Agents first.</h2>
+    <p>Unlike a gated pass, HASHDATA asks for no Agent ID. Any BNB wallet may mint and merge. Calls must come from a wallet itself, never an intermediary contract. The smoothest road is still an agent: the <a href="/hashdata-skill.md">agent guide</a> carries the exact calls, prices, and failure causes, so a Binance Agentic Wallet can play the whole game from a single prompt.</p>
+
+    <p class="secnote">ARTWORK</p>
+    <h2 class="sec" style="margin-top:10px">A wall of hex per hash</h2>
+    <p>Every hash is drawn by a generator from its chain data: a wall of hexadecimal characters produced by a real SHA-256 chain seeded by its tokenId and rung, growing denser as the bits double. The value and its 12-bit binary are printed on the piece, and the serial equals its tokenId. Minted hashes are clean, merged hashes carry the red seam, boost hashes wear a BOOST tag. Only a complete 2048-bit hash is gold. Metadata lives at hashdata.org/metadata/&lt;id&gt; and is generated as hashes are born.</p>
+  </div>
+
+  <div class="foot"><span><b>HASHDATA</b> · HASHDATA.ORG</span><span><a href="/">BACK TO THE GAME</a></span><span>EVERY HASH STARTS AT 2 BITS</span></div>
+</div>
+</body>
+</html>
