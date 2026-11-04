@@ -1,4 +1,4 @@
-// HASHDATA — papan live dari chain. Tanpa kontrak, papan menampilkan keadaan genesis.
+// HASDATA — papan live dari chain. Tanpa kontrak, papan menampilkan keadaan genesis.
 var CONFIG = {
   contract: "", // diisi saat kontrak deploy; kosong = keadaan genesis (semua nol)
   rpcs: ["https://bsc-dataseed1.binance.org", "https://bsc-dataseed-public.bnbchain.org", "https://bsc-mainnet.public.blastapi.io", "https://bsc-rpc.publicnode.com", "https://bsc-dataseed.bnbchain.org"],
