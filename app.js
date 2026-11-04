@@ -1,6 +1,6 @@
 // HASDATA — papan live dari chain. Tanpa kontrak, papan menampilkan keadaan genesis.
 var CONFIG = {
-  contract: "", // diisi saat kontrak deploy; kosong = keadaan genesis (semua nol)
+  contract: "0x4191882207C69f076d41FDEf824988342C312301", // HASDATA NFT v2 (live)
   rpcs: ["https://bsc-dataseed1.binance.org", "https://bsc-dataseed-public.bnbchain.org", "https://bsc-mainnet.public.blastapi.io", "https://bsc-rpc.publicnode.com", "https://bsc-dataseed.bnbchain.org"],
   totalUnits: 2048,
   maxGolden: 2
@@ -105,5 +105,5 @@ document.querySelectorAll("[data-copy]").forEach(function (btn) {
     btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy prompt"; }, 1600);
   });
 });
-var tick = "$HASH TOKEN · HOLDERS ONLY <b>◆</b> EVERY HASH STARTS AT 2 BITS <b>◆</b> MERGE TWO EQUAL HASHES <b>◆</b> 2048 BITS = ONE COMPLETE SHA-256 <b>◆</b> MINT $0.20 <b>◆</b> BOOST TO 32 BITS FOR $3 <b>◆</b> MERGE IS FREE <b>◆</b> ";
+var tick = "$HAS TOKEN · HOLDERS ONLY <b>◆</b> EVERY HASH STARTS AT 2 BITS <b>◆</b> MERGE TWO EQUAL HASHES <b>◆</b> 2048 BITS = ONE COMPLETE SHA-256 <b>◆</b> MINT $0.20 <b>◆</b> BOOST TO 32 BITS FOR $3 <b>◆</b> MERGE IS FREE <b>◆</b> ";
 $("tickerText").innerHTML = tick + tick;
