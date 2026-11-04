@@ -1,6 +1,6 @@
 // Penjaga anti basi: bila version.json di server lebih baru dari build ini,
 // muat ulang sekali agar tidak ada device yang tertinggal di versi lama.
-const BUILD_ID = "20261104-4";
+const BUILD_ID = "20261104-5";
 fetch("version.json", { cache: "no-store" }).then(r => r.json()).then(v => {
   if (v && v.build && v.build !== BUILD_ID && !sessionStorage.getItem("hd-reloaded")) {
     sessionStorage.setItem("hd-reloaded", "1");
@@ -117,3 +117,133 @@ document.querySelectorAll("[data-copy]").forEach(function (btn) {
 });
 var tick = "$HAS TOKEN · HOLDERS ONLY <b>◆</b> EVERY HASH STARTS AT 2 BITS <b>◆</b> MERGE TWO EQUAL HASHES <b>◆</b> 2048 BITS = ONE COMPLETE SHA-256 <b>◆</b> MINT $0.20 <b>◆</b> BOOST TO 32 BITS FOR $3 <b>◆</b> MERGE IS FREE <b>◆</b> ";
 $("tickerText").innerHTML = tick + tick;
+
+/* ===== lapisan interaktif ===== */
+(function () {
+  var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* hujan hex di hero */
+  var cv = document.getElementById("hexRain");
+  if (cv && !reduced) {
+    var ctx = cv.getContext("2d");
+    var pairs = [];
+    var seed = 987654321;
+    function rnd() { seed = (seed * 1103515245 + 12345) & 0x7fffffff; return seed; }
+    for (var i = 0; i < 500; i++) pairs.push(("0" + (rnd() % 256).toString(16)).slice(-2));
+    var cols = [];
+    function sizeCanvas() {
+      cv.width = cv.clientWidth; cv.height = cv.clientHeight;
+      cols = [];
+      var n = Math.floor(cv.width / 46);
+      for (var j = 0; j < n; j++) cols.push({ x: 12 + j * 46, y: Math.random() * cv.height, sp: 0.3 + Math.random() * 0.7, off: Math.floor(Math.random() * 400) });
+    }
+    sizeCanvas();
+    window.addEventListener("resize", sizeCanvas);
+    ctx.font = "12px 'Plex Mono', monospace";
+    var frame = 0;
+    (function draw() {
+      requestAnimationFrame(draw);
+      if (document.hidden || frame++ % 3) return;
+      ctx.clearRect(0, 0, cv.width, cv.height);
+      ctx.fillStyle = "#33e0ff";
+      cols.forEach(function (c) {
+        for (var k = 0; k < 7; k++) ctx.fillText(pairs[(c.off + k * 13) % 500], c.x, c.y + k * 17);
+        c.y += c.sp;
+        if (c.y - 120 > cv.height) { c.y = -120; c.off = Math.floor(Math.random() * 400); }
+      });
+    })();
+  }
+
+  /* kalkulator naik tangga */
+  var cBase = 4, cBoost = 0;
+  function calcRender() {
+    var units = cBase + cBoost * 16;
+    var cost = cBase * 0.2 + cBoost * 3;
+    var countsL = {};
+    countsL[1] = cBase; countsL[5] = cBoost;
+    for (var l = 1; l < 11; l++) {
+      var pairsN = Math.floor((countsL[l] || 0) / 2);
+      if (pairsN) { countsL[l] -= pairsN * 2; countsL[l + 1] = (countsL[l + 1] || 0) + pairsN; }
+    }
+    var top = 0;
+    Object.keys(countsL).forEach(function (l) { if (countsL[l] > 0) top = Math.max(top, Math.pow(2, Number(l))); });
+    document.getElementById("calcBase").textContent = cBase;
+    document.getElementById("calcBoost").textContent = cBoost;
+    document.getElementById("calcUnits").textContent = units + " / 64";
+    document.getElementById("calcCost").textContent = "$" + cost.toFixed(2);
+    document.getElementById("calcTop").textContent = top ? top + " bits" : "none yet";
+  }
+  document.querySelectorAll("[data-step]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var parts = b.getAttribute("data-step").split(":");
+      var d = Number(parts[1]);
+      if (parts[0] === "base") cBase = Math.min(64, Math.max(0, cBase + d));
+      else cBoost = Math.min(4, Math.max(0, cBoost + d));
+      if (cBase + cBoost * 16 > 64) { if (parts[0] === "base") cBase = 64 - cBoost * 16; else cBoost = Math.floor((64 - cBase) / 16); }
+      calcRender();
+    });
+  });
+  if (document.getElementById("calc")) calcRender();
+
+  /* Merge Lab */
+  var tray = [2, 2, 2, 2, 2, 2, 2, 2], sel = -1, merges = 0, spent = 1.6, popIdx = -1;
+  var trayEl = document.getElementById("labTray");
+  function labRender() {
+    if (!trayEl) return;
+    trayEl.innerHTML = "";
+    tray.forEach(function (v, i) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "chip" + (v === 2048 ? " gold" : "") + (i === sel ? " sel" : "") + (i === popIdx ? " pop" : "");
+      b.innerHTML = v + " bits<small>B-" + String(Math.log2(v)).padStart(2, "0") + "</small>";
+      b.addEventListener("click", function () { labTap(i); });
+      trayEl.appendChild(b);
+    });
+    popIdx = -1;
+    var top = tray.length ? Math.max.apply(null, tray) : 0;
+    document.getElementById("labMerges").textContent = merges + " merges";
+    document.getElementById("labTop").textContent = "top " + top + " bits";
+    document.getElementById("labSpent").textContent = "$" + spent.toFixed(2) + " spent";
+  }
+  function labMsg(t) { document.getElementById("labMsg").textContent = t; }
+  function labTap(i) {
+    if (sel === -1) { sel = i; labMsg("Selected " + tray[i] + " bits. Tap an equal hash."); labRender(); return; }
+    if (sel === i) { sel = -1; labMsg("Tap two equal hashes to merge them."); labRender(); return; }
+    if (tray[sel] !== tray[i]) { sel = i; labMsg("Those differ. Merging needs two equal sizes."); labRender(); return; }
+    var v = tray[sel] * 2;
+    var keep = Math.min(sel, i);
+    tray = tray.filter(function (_, j) { return j !== sel && j !== i; });
+    tray.splice(keep, 0, v);
+    tray.sort(function (a, b) { return a - b; });
+    popIdx = tray.indexOf(v);
+    sel = -1; merges++;
+    if (v === 2048) labMsg("SHA-256 COMPLETE. One full hash, built by hand. Only two can ever exist on chain.");
+    else labMsg("Merged into " + v + " bits. Keep doubling.");
+    if (navigator.vibrate) navigator.vibrate(8);
+    labRender();
+  }
+  var addBtn = document.getElementById("labAdd");
+  if (addBtn) addBtn.addEventListener("click", function () {
+    if (tray.length >= 24) { labMsg("Tray is full. Merge something first."); return; }
+    tray.push(2); tray.sort(function (a, b) { return a - b; }); spent += 0.2;
+    labMsg("A fresh 2-bit hash joins the tray."); labRender();
+  });
+  var rstBtn = document.getElementById("labReset");
+  if (rstBtn) rstBtn.addEventListener("click", function () {
+    tray = [2, 2, 2, 2, 2, 2, 2, 2]; sel = -1; merges = 0; spent = 1.6;
+    labMsg("Fresh tray. Eight 2-bit hashes."); labRender();
+  });
+  labRender();
+
+  /* papan: ketuk baris untuk angka lengkap */
+  var detail = document.getElementById("boardDetail");
+  if (detail) {
+    VALS.forEach(function (v, i) {
+      var row = document.getElementById("row" + (i + 1));
+      if (row) row.addEventListener("click", function () {
+        selectRung(i);
+        detail.textContent = "B-" + String(i + 1).padStart(2, "0") + " · " + fmt(v) + " bits · max " + fmt(4096 / v) + " can ever exist · writing one eats " + fmt(v / 2) + " units · " + fmt(counts[i]) + " alive now";
+      });
+    });
+  }
+})();
