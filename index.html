@@ -47,7 +47,7 @@
       <p class="lvl">WRITE · RUNG B-01</p>
       <h3>Write a hash</h3>
       <p>A fresh hash, 2 bits, binary 10. Hold it, trade it, or feed it into a merge. Every climb in the game starts here. At most 64 units per wallet across both doors.</p>
-      <p class="price">$0.20 <small>±0.00026 BNB · 1 UNIT</small></p>
+      <p class="price">$0.20 <small>0.000285 BNB · 1 UNIT</small></p>
       <details>
         <summary>PROMPT FOR YOUR AGENT</summary>
         <pre id="promptMint">Read https://hasdata.org/hasdata-skill.md and follow it exactly. Mint one HASDATA base hash (2 bits) for my wallet on BNB Chain: call mint() with exactly the base price stated in the skill file, preview first, then execute. Report my new tokenId and its artwork URL.</pre>
@@ -58,7 +58,7 @@
       <p class="lvl">BOOST · RUNG B-06</p>
       <h3>Boost to 32 bits</h3>
       <p>Skip four merges. A 32-bit hash normally eats sixteen 2-bit hashes, worth $3.20 in mints. The boost sells the same rung for $3 flat. Boost hashes carry a BOOST mark on their artwork, forever.</p>
-      <p class="price">$3 <small>±0.0039 BNB · 16 UNITS</small></p>
+      <p class="price">$3 <small>0.004272 BNB · 16 UNITS</small></p>
       <details>
         <summary>PROMPT FOR YOUR AGENT</summary>
         <pre id="promptJump">Read https://hasdata.org/hasdata-skill.md and follow it exactly. Mint one HASDATA boost hash (32 bits) for my wallet on BNB Chain: call mintBoost() with exactly the boost price stated in the skill file, preview first, then execute. Report my new tokenId and its artwork URL.</pre>
@@ -101,15 +101,15 @@
   <p class="checkout" id="whoOut">Counts per rung for any wallet, read from chain. Opens with the contract.</p>
 
   <p class="secnote">05 · TOKEN</p>
-  <h2 class="sec" id="token">$HASH, behind the gate.</h2>
+  <h2 class="sec" id="token">$HAS, behind the gate.</h2>
   <div class="card" style="border-color:var(--ink);background:var(--gold);max-width:900px">
     <p class="lvl" style="color:var(--ink)">THE TOKEN · FIXED SUPPLY 2,048,000,000</p>
     <h3 style="color:var(--ink)">Hashes mint the token</h3>
-    <p style="color:#3d2f05">There is exactly one way to mint $HASH: hold a hash. Every hash carries a minting allowance of <b>1,000,000 $HASH per unit</b> it represents. A 2-bit hash mints 1,000,000. A 32-bit hash mints 16,000,000. A complete 2048-bit hash mints 1,024,000,000, half the supply in a single key.</p>
+    <p style="color:#3d2f05">There is exactly one way to mint $HAS: hold a hash. Every hash carries a minting allowance of <b>1,000,000 $HAS per unit</b> it represents. A 2-bit hash mints 1,000,000. A 32-bit hash mints 16,000,000. A complete 2048-bit hash mints 1,024,000,000, half the supply in a single key.</p>
     <p style="color:#3d2f05">Minting never burns the hash, and an allowance can be spent only once per hash. Merge two hashes and the child inherits whatever its parents already minted, so no unit ever pays out twice. Token minted so far: <b id="hudToken">0 / 2,048,000,000</b></p>
     <details>
       <summary>PROMPT FOR YOUR AGENT</summary>
-      <pre id="promptToken">Read https://hasdata.org/hasdata-skill.md and follow it exactly. For each HASDATA hash in my wallet with unspent allowance, mint its $HASH: call mintTokens(tokenId) on the $HASH token contract with zero value, preview first, then execute. Report how much $HASH each hash minted.</pre>
+      <pre id="promptToken">Read https://hasdata.org/hasdata-skill.md and follow it exactly. For each HASDATA hash in my wallet with unspent allowance, mint its $HAS: call mintTokens(tokenId) on the $HAS token contract with zero value, preview first, then execute. Report how much $HAS each hash minted.</pre>
       <button class="btn copy" data-copy="promptToken">Copy prompt</button>
     </details>
   </div>
@@ -119,8 +119,8 @@
   <section class="contracts">
     <div class="ccard">
       <h4>HASDATA (NFT)</h4>
-      <p>One ERC-721 contract holds the whole game: minting, the boost, merging, and the unit cap of 2,048. Mint proceeds collect in the contract for the owner. A second contract issues the $HASH token, mintable by hash holders only (section 05). No presale.</p>
-      <p class="addr" id="contractAddr">Contract address: published here at launch, before mint opens.</p>
+      <p>One ERC-721 contract holds the whole game: minting, the boost, merging, and the unit cap of 2,048. Mint proceeds collect in the contract for the owner. A second contract issues the $HAS token, mintable by hash holders only (section 05). No presale.</p>
+      <p class="addr" id="contractAddr">Contract address: 0x4191882207C69f076d41FDEf824988342C312301 · $HAS token: 0xD7dFDFf84D2C16Bf5B46A876397222780b4Eb4c4</p>
     </div>
     <div class="ccard">
       <h4>Trade</h4>
@@ -131,6 +131,6 @@
 
   <div class="foot"><span><b>HASDATA</b> · HASDATA.ORG</span><span>MINT AND MERGE RUN THROUGH YOUR AGENT · NO CONNECT WALLET</span><span>EVERY HASH STARTS AT 2 BITS</span></div>
 </div>
-<script src="/app.js?v=2"></script>
+<script src="/app.js?v=3"></script>
 </body>
 </html>
