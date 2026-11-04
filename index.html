@@ -10,7 +10,7 @@
 <meta property="og:image" content="https://hasdata.org/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
-<link rel="stylesheet" href="/style.css?v=2">
+<link rel="stylesheet" href="/style.css?v=3">
 </head>
 <body>
 <div class="wrap">
@@ -24,6 +24,7 @@
   <nav class="nav"><a href="#mint">MINT</a><a href="#merge">MERGE</a><a href="#ladder">LADDER</a><a href="#check">CHECK A WALLET</a><a href="#token">TOKEN</a><a href="/model.html">MODEL</a><a href="/hasdata-skill.md">AGENT GUIDE</a></nav>
 
   <section class="hero">
+    <canvas id="hexRain" aria-hidden="true"></canvas>
     <p class="kick">A GAME OF DOUBLING, WRITTEN IN HASHES</p>
     <h1>EVERY HASH<br>STARTS AT <span class="g">2 BITS.</span></h1>
     <p class="sub">Mint a hash of <b>2 bits</b>. Burn two of equal size and one comes back with <b>double the bits</b>. Eleven rungs up sits <b>2048 bits</b>, one complete SHA-256, and with only 2,048 units in the whole game, the math lets just two ever exist.</p>
@@ -66,6 +67,25 @@
       </details>
     </div>
   </section>
+  <div class="calc" id="calc">
+    <p class="calc-title">PLAN YOUR CLIMB</p>
+    <div class="calc-rows">
+      <div class="calc-row">
+        <span>Base mints · 2 bits</span>
+        <div class="stepper"><button type="button" data-step="base:-1" aria-label="Fewer base mints">−</button><b id="calcBase">4</b><button type="button" data-step="base:1" aria-label="More base mints">+</button></div>
+      </div>
+      <div class="calc-row">
+        <span>Boosts · 32 bits</span>
+        <div class="stepper"><button type="button" data-step="boost:-1" aria-label="Fewer boosts">−</button><b id="calcBoost">0</b><button type="button" data-step="boost:1" aria-label="More boosts">+</button></div>
+      </div>
+    </div>
+    <div class="calc-out">
+      <div><span>UNITS</span><b id="calcUnits">4 / 64</b></div>
+      <div><span>COST</span><b id="calcCost">$0.80</b></div>
+      <div><span>TOP REACHABLE BY MERGING</span><b id="calcTop">8 bits</b></div>
+    </div>
+    <p class="calc-note">Merging needs pairs of equal size. The top above assumes you merge everything mergeable.</p>
+  </div>
   <p class="sub" style="font-size:14px">No Agent ID is required and no wallet connects to this page. Any BNB wallet can call the contract directly; the agent guide is simply the smoothest road. Calls from contracts are rejected, always send from your own wallet.</p>
 
   <p class="secnote">02 · MERGE</p>
@@ -87,10 +107,25 @@
     </details>
   </div>
 
+  <div class="lab" id="lab">
+    <div class="lab-head">
+      <p class="calc-title">MERGE LAB · PRACTICE</p>
+      <p class="lab-stats"><span id="labMerges">0 merges</span> · <span id="labTop">top 2 bits</span> · <span id="labSpent">$1.60 spent</span></p>
+    </div>
+    <div class="lab-tray" id="labTray"></div>
+    <p class="lab-msg" id="labMsg">Tap two equal hashes to merge them.</p>
+    <div class="lab-btns">
+      <button type="button" class="btn ghost" id="labAdd">+ Mint a 2-bit hash · $0.20</button>
+      <button type="button" class="btn ghost" id="labReset">Reset</button>
+    </div>
+    <p class="calc-note">Practice only, nothing leaves this page. Real merges burn two hashes on chain through your agent, free beyond gas.</p>
+  </div>
+
   <p class="secnote">03 · LADDER</p>
   <h2 class="sec" id="ladder">The ladder, live.</h2>
   <section class="board" id="board"></section>
   <p class="cap" style="text-align:left">COUNTS READ STRAIGHT FROM THE CONTRACT · BURNED HASHES NEVER COME BACK</p>
+  <p class="board-detail" id="boardDetail">Tap any rung for its numbers.</p>
 
   <p class="secnote">04 · CHECK</p>
   <h2 class="sec" id="check">Check a wallet.</h2>
@@ -131,6 +166,6 @@
 
   <div class="foot"><span><b>HASDATA</b> · HASDATA.ORG</span><span>MINT AND MERGE RUN THROUGH YOUR AGENT · NO CONNECT WALLET</span><span>EVERY HASH STARTS AT 2 BITS</span></div>
 </div>
-<script src="/app.js?v=4"></script>
+<script src="/app.js?v=5"></script>
 </body>
 </html>
