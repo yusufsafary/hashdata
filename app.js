@@ -1,3 +1,13 @@
+// Penjaga anti basi: bila version.json di server lebih baru dari build ini,
+// muat ulang sekali agar tidak ada device yang tertinggal di versi lama.
+const BUILD_ID = "20261104-4";
+fetch("version.json", { cache: "no-store" }).then(r => r.json()).then(v => {
+  if (v && v.build && v.build !== BUILD_ID && !sessionStorage.getItem("hd-reloaded")) {
+    sessionStorage.setItem("hd-reloaded", "1");
+    location.reload();
+  }
+}).catch(() => {});
+
 // HASDATA — papan live dari chain. Tanpa kontrak, papan menampilkan keadaan genesis.
 var CONFIG = {
   contract: "0x4191882207C69f076d41FDEf824988342C312301", // HASDATA NFT v2 (live)
