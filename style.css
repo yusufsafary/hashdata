@@ -107,7 +107,7 @@ tr.goldrow td{background:var(--gold)}
 .statusline{font-family:MonoM;font-size:12.5px;letter-spacing:.1em;margin-top:14px;color:var(--mute)}
 .statusline b{color:var(--red)}
 
-/* HASHDATA dark theme overrides */
+/* HASDATA dark theme overrides */
 :root{--paper:#05080a;--ink:#e8f4f6;--gold:#ffc53d;--panel:#0b1114;--cell:#22333a;--mute:#5f7d85}
 body{background:#05080a;color:#e8f4f6}
 .map{background:linear-gradient(180deg,#0a1216,#070d10);box-shadow:10px 10px 0 rgba(51,224,255,.28)}
