@@ -9,7 +9,7 @@ Site: https://hasdata.org · Model: https://hasdata.org/model.html
 ## Contract
 
 - Network: BNB Chain (chainId 56)
-- Contract (HASDATA): TO BE ANNOUNCED AT LAUNCH. Read the live address from the Contracts
+- Contract (HASDATA): 0x4191882207C69f076d41FDEf824988342C312301. Read the live address from the Contracts
   section of https://hasdata.org before calling anything. Never use an address from
   anywhere else.
 - No Agent ID is required. Any wallet may play. Calls must come from the wallet
@@ -17,8 +17,8 @@ Site: https://hasdata.org · Model: https://hasdata.org/model.html
 
 ## Prices (fixed in the contract at launch; confirm by reading the site)
 
-- Base mint: ±0.00026 BNB ($0.20) → 1 unit, value 2
-- Boost mint: ±0.0039 BNB ($3) → 16 units, value 32
+- Base mint: 0.000285 BNB = 285000000000000 wei ($0.20) → 1 unit, value 2
+- Boost mint: 0.004272 BNB = 4272000000000000 wei ($3) → 16 units, value 32
 - Merge: 0 BNB, gas only
 - One wallet may mint at most 64 units in total across both mints.
 
@@ -34,13 +34,13 @@ Site: https://hasdata.org · Model: https://hasdata.org/model.html
   originOf(uint256) 0x794b2a07 (0 minted, 1 merged, 2 boost) ·
   walletLevelCount(address, uint8) 0x274a1ea2 · mintOpen() 0x24bbd049
 
-## The $HASH token (gate)
+## The $HAS token (gate)
 
-- Token: $HASH, fixed supply 2,048,000,000. Contract: TO BE ANNOUNCED AT LAUNCH
+- Token: $HAS, fixed supply 2,048,000,000. Contract: 0xD7dFDFf84D2C16Bf5B46A876397222780b4Eb4c4
   (read it from https://hasdata.org, Contracts section, like the HASDATA address).
-- Only HASDATA holders can mint $HASH, and only through their own hashes:
+- Only HASDATA holders can mint $HAS, and only through their own hashes:
   mintTokens(uint256 tokenId) — selector 0x97304ced, value 0 (gas only).
-- Allowance per hash = units(value) x 1,000,000 $HASH, spendable once per hash:
+- Allowance per hash = units(value) x 1,000,000 $HAS, spendable once per hash:
   allowanceOf(uint256) 0x516d2435 · already minted: tokensMintedOf(uint256) 0xb22c2069
   (both read on the HASDATA contract). Value 2 → 1,000,000; value 32 → 16,000,000;
   value 2048 → 1,024,000,000.
